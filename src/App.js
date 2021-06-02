@@ -7,19 +7,25 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 
 function App() {
+  // fetching data from json file
   const [data, setData] = useState([]);
+  // opening and closing modal
   const [open, setOpen] = useState(false);
+  // setting current item type, and displaying the same image in modal
   const [selected, setSelected] = useState('');
 
+  // handle modal close
   const handleClose = () => {
     setOpen(false);
   };
 
+  // on clicking on card, open modal and also set the current item type
   const onClick = (type) => {
     setOpen(true);
     setSelected(type);
   }
 
+  // styles for modal
   const useStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
@@ -33,12 +39,14 @@ function App() {
 
   const classes = useStyles();
 
+  // modal body - using same image
   const modalBody = (
     <div className={classes.paper}>
       <img src={`/images/${selected}.jpg`} width="60%" />
     </div>
   );
 
+  // method to fetch data from local json file
   const getData = () => {
     fetch('data.json', {
       headers: {
